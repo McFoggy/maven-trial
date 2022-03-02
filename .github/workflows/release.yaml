@@ -1,4 +1,4 @@
-name: Standard build
+name: Release build
 on:
   push:
     branches: [ release ]
@@ -26,4 +26,5 @@ jobs:
           git checkout develop
           git pull
           git merge release
-          git push --follow-tags origin
+          git push --follow-tags origin release
+          git push origin develop
