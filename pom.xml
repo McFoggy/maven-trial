@@ -24,5 +24,12 @@
     <artifactId>maven-trial</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <scm>
+        <connection>scm:git:git@github.com:lectra-R-D/maven-trial.git</connection>
+        <developerConnection>scm:git:git@github.com:lectra-R-D/maven-trial.git</developerConnection>
+        <url>https://github.com/lectra-R-D/maven-trial</url>
+        <tag>HEAD</tag>
+    </scm>
 </project>
 
