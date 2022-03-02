@@ -1,0 +1,29 @@
+name: Standard build
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Scm
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Build with Maven
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Action Release"
+          mvn -B release:prepare -DpushChanges=false -DscmCommentPrefix="[ci skip]" -DtagNameFormat="v@{project.version}" -BpreparationGoals="clean package"
+          git clean -f -d
+          git checkout develop
+          git pull
+          git merge release
+          git push --follow-tags origin
