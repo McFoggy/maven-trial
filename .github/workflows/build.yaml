@@ -1,7 +1,9 @@
 name: Standard build
 on:
   push:
-    branches: [ '!release' ]
+    branches:
+      - '**'
+      - '!release'
 
 jobs:
   build:

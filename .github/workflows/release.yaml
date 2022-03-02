@@ -1,7 +1,8 @@
 name: Release build
 on:
   push:
-    branches: [ release ]
+    branches:
+      - release
 
 jobs:
   build:
@@ -21,7 +22,7 @@ jobs:
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Action Release"
-          mvn -B release:prepare -DpushChanges=false -DscmCommentPrefix="[ci skip]" -DtagNameFormat="v@{project.version}" -BpreparationGoals="clean package"
+          mvn -B release:prepare -D"pushChanges=false" -D"scmCommentPrefix=[ci skip] " -D"tagNameFormat=v@{project.version}" -D"preparationGoals=clean package"
           git clean -f -d
           git checkout develop
           git pull
