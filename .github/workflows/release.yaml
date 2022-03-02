@@ -24,8 +24,8 @@ jobs:
           git config --global user.name "GitHub Action Release"
           mvn -B release:prepare -D"pushChanges=false" -D"scmCommentPrefix=[ci skip] " -D"tagNameFormat=v@{project.version}" -D"preparationGoals=clean package"
           git clean -f -d
+          git fetch origin develop
           git checkout develop
-          git pull
           git merge release
           git push --follow-tags origin release
           git push origin develop
